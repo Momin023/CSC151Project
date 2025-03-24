@@ -7,6 +7,8 @@ public class Project_Momin_Khan {
     public static void main(String[] args) {
         // Initialize a list to store Policy objects
         ArrayList<Policy> policies = new ArrayList<>();
+        int smokerCount = 0;   // To keep track of number of smokers
+        int nonSmokerCount = 0; // To keep track of number of non-smokers
 
         try {
             // Create a scanner object to read from the file
@@ -47,6 +49,13 @@ public class Project_Momin_Khan {
                 // Read smoker status (String)
                 String smokerStatus = readNextLine(fileScanner);
                 if (smokerStatus == null) break;
+
+                // Count smokers and non-smokers
+                if (smokerStatus.equalsIgnoreCase("smoker")) {
+                    smokerCount++;
+                } else if (smokerStatus.equalsIgnoreCase("non-smoker")) {
+                    nonSmokerCount++;
+                }
 
                 // Read and parse height (Double)
                 double height = 0.0;
@@ -95,6 +104,10 @@ public class Project_Momin_Khan {
                 System.out.println("Policyholder's BMI: " + String.format("%.2f", policy.calculateBMI()));
                 System.out.println("Policy Price: $" + String.format("%.2f", policy.calculatePolicyPrice()));
             }
+
+            // Display the number of smokers and non-smokers
+            System.out.println("\nThe number of poilicies with a smoker is: " + smokerCount);
+            System.out.println("The number of poilicies with a non-smoker is: " + nonSmokerCount);
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred while reading the file.");
